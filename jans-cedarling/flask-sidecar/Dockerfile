@@ -51,12 +51,14 @@ RUN git clone --filter blob:none --no-checkout https://github.com/JanssenProject
         && git sparse-checkout set jans-cedarling \
         && cd jans-cedarling/bindings/cedarling_python \
         && cp -r ../../flask-sidecar/* /api \
-        && version=$(sed -n 's/.*version = "\([0-9].[0-9].[0-9]\)"/\1/p' Cargo.toml) \
+        && version=$(sed -n 's/.*version = "\([0-9]\+\.[0-9]\+\.[0-9]\+\)"/\1/p' Cargo.toml) \
         && echo "${version}" > /api/cedarling_version \
         && release_version="${version}" \
         && wheel_version="${version}" \
         && if [ "$version" = "0.0.0" ]; then release_version="nightly"; wheel_version="0.0.0"; fi \
-        && wget -q https://github.com/JanssenProject/jans/releases/download/"${release_version}"/cedarling_python-"${wheel_version}"-cp310-cp310-manylinux_2_34_x86_64.whl -O /api/cedarling_python-"${version}"-cp310-cp310-manylinux_2_34_x86_64.whl \
+        && echo "Downloading wheel for version: ${wheel_version} from release: ${release_version}" \
+        && wget --no-check-certificate -q "https://github.com/JanssenProject/jans/releases/download/${release_version}/cedarling_python-${wheel_version}-cp310-cp310-manylinux_2_34_x86_64.whl" -O "/api/cedarling_python-${version}-cp310-cp310-manylinux_2_34_x86_64.whl" \
+        && ls -la /api/cedarling_python-*.whl \
         && rm -rf /tmp/jans
 
 # Setting up proper permissions:
