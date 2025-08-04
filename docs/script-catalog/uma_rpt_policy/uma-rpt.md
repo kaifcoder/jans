@@ -188,3 +188,7 @@ public class UmaRptPolicy implements UmaRptPolicyType {
 }
 
 ```
+
+## Sample Script 
+
+[UMA RPT Policy (Client Authorization)](./uma-client-authz-rpt-policy/README.md) - This document covers UMA RPT policy for client authorization based on allowed clients.
