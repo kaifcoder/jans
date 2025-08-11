@@ -14865,8 +14865,6 @@ components:
           type: boolean
         jansHideOnDiscovery:
           type: boolean
-        required:
-          type: boolean
         custom:
           type: boolean
         attributeValidation:
@@ -14875,19 +14873,19 @@ components:
           type: string
         selected:
           type: boolean
-        adminCanEdit:
+        whitePagesCanView:
           type: boolean
-        userCanView:
+        userCanEdit:
+          type: boolean
+        adminCanEdit:
           type: boolean
         adminCanView:
           type: boolean
-        userCanEdit:
+        userCanView:
           type: boolean
         userCanAccess:
           type: boolean
         adminCanAccess:
-          type: boolean
-        whitePagesCanView:
           type: boolean
         baseDn:
           type: string
@@ -14955,8 +14953,6 @@ components:
           type: string
         parEndpoint:
           type: string
-        allowClientAssertionAudWithoutStrictIssuerMatch:
-          type: boolean
         requirePar:
           type: boolean
         parForbidPublicClient:
@@ -15157,10 +15153,13 @@ components:
           type: array
           items:
             type: string
-        logoutStatusJwtSigningAlgValuesSupported:
+        sessionJwtSigningAlgValuesSupported:
           type: array
           items:
             type: string
+        sessionStatusListBitSize:
+          type: integer
+          format: int32
         txTokenSigningAlgValuesSupported:
           type: array
           items:
@@ -15408,9 +15407,6 @@ components:
           type: boolean
         disablePromptConsent:
           type: boolean
-        logoutStatusJwtLifetime:
-          type: integer
-          format: int32
         sessionIdCookieLifetime:
           type: integer
           format: int32
@@ -15741,7 +15737,7 @@ components:
             - REVOKE_SESSION
             - GLOBAL_TOKEN_REVOCATION
             - STATUS_LIST
-            - LOGOUT_STATUS_JWT
+            - SESSION_STATUS_LIST
             - ACTIVE_SESSION
             - END_SESSION
             - STATUS_SESSION
@@ -16595,7 +16591,7 @@ components:
           type: string
         txTokenEncryptedResponseEnc:
           type: string
-        logoutStatusJwtSignedResponseAlg:
+        sessionJwtSignedResponseAlg:
           type: string
         authorizationDetailsTypes:
           type: array
@@ -17423,10 +17419,10 @@ components:
         ttl:
           type: integer
           format: int32
-        persisted:
-          type: boolean
         opbrowserState:
           type: string
+        persisted:
+          type: boolean
     SessionIdAccessMap:
       type: object
       properties:
@@ -17572,8 +17568,6 @@ components:
           type: string
         authorizationCode:
           type: string
-        jti:
-          type: string
         nonce:
           type: string
         codeChallenge:
@@ -17605,11 +17599,8 @@ components:
           - LONG_LIVED_ACCESS_TOKEN
           - REFRESH_TOKEN
           - AUTHORIZATION_CODE
-          - LOGOUT_STATUS_JWT
           - TX_TOKEN
         accessToken:
-          type: boolean
-        logoutStatusJwt:
           type: boolean
     TokenEntityPagedResult:
       type: object

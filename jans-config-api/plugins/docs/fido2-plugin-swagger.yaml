@@ -63,6 +63,53 @@ paths:
       security:
       - oauth2:
         - https://jans.io/oauth/config/fido2.write
+  /fido2/fido2-config/metrics:
+    get:
+      tags:
+      - Fido2 - Configuration
+      summary: Gets Fido2 passkey metrics configuration
+      description: Gets Fido2 passkey metrics configuration properties
+      operationId: get-fido2-metrics-config
+      responses:
+        "200":
+          description: Fido2 Metrics Config
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PasskeyMetricsConfig"
+        "401":
+          description: Unauthorized
+        "500":
+          description: InternalServerError
+      security:
+      - oauth2:
+        - https://jans.io/oauth/config/fido2.readonly
+    put:
+      tags:
+      - Fido2 - Configuration
+      summary: Updates Fido2 passkey metrics configuration
+      description: Updates Fido2 passkey metrics configuration properties
+      operationId: put-fido2-metrics-config
+      requestBody:
+        description: Fido2 Metrics Config
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PasskeyMetricsConfig"
+      responses:
+        "200":
+          description: Fido2 Metrics Config
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PasskeyMetricsConfig"
+        "401":
+          description: Unauthorized
+        "500":
+          description: InternalServerError
+      security:
+      - oauth2:
+        - https://jans.io/oauth/config/fido2.write
   /fido2/registration/id/{jansId}:
     get:
       tags:
@@ -564,6 +611,24 @@ components:
           type: boolean
         errorReasonEnabled:
           type: boolean
+        passkeyMetricsEnabled:
+          type: boolean
+        passkeyMetricsRetentionDays:
+          type: integer
+          format: int32
+        passkeyMetricsAsyncStorage:
+          type: boolean
+        passkeyMetricsBatchSize:
+          type: integer
+          format: int32
+        registrationMetricsEnabled:
+          type: boolean
+        authenticationMetricsEnabled:
+          type: boolean
+        deviceInfoCollection:
+          type: boolean
+        errorCategorization:
+          type: boolean
         fido2Configuration:
           $ref: "#/components/schemas/Fido2Configuration"
     Fido2Configuration:
@@ -623,6 +688,27 @@ components:
           type: array
           items:
             type: string
+    PasskeyMetricsConfig:
+      type: object
+      properties:
+        passkeyMetricsEnabled:
+          type: boolean
+        passkeyMetricsRetentionDays:
+          type: integer
+          format: int32
+        passkeyMetricsAsyncStorage:
+          type: boolean
+        passkeyMetricsBatchSize:
+          type: integer
+          format: int32
+        registrationMetricsEnabled:
+          type: boolean
+        authenticationMetricsEnabled:
+          type: boolean
+        deviceInfoCollection:
+          type: boolean
+        errorCategorization:
+          type: boolean
     ApiError:
       type: object
       properties:
