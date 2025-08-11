@@ -78,6 +78,32 @@ public class AppConfiguration implements Configuration, Serializable {
 	@DocProperty(description = "Boolean value specifying whether to return detailed reason of the error from Fido2. Default value is false", defaultValue = "false")
 	private Boolean errorReasonEnabled = false;
 
+    // ========== PASSKEY METRICS CONFIGURATION ==========
+    
+    @DocProperty(description = "Boolean value specifying whether passkey metrics collection is enabled", defaultValue = "true")
+    private Boolean passkeyMetricsEnabled = true;
+    
+    @DocProperty(description = "Number of days to retain passkey metrics data", defaultValue = "90")
+    private Integer passkeyMetricsRetentionDays = 90;
+    
+    @DocProperty(description = "Boolean value specifying whether to use async storage for passkey metrics", defaultValue = "true")
+    private Boolean passkeyMetricsAsyncStorage = true;
+    
+    @DocProperty(description = "Batch size for passkey metrics storage", defaultValue = "100")
+    private Integer passkeyMetricsBatchSize = 100;
+    
+    @DocProperty(description = "Boolean value specifying whether to collect registration metrics", defaultValue = "true")
+    private Boolean registrationMetricsEnabled = true;
+    
+    @DocProperty(description = "Boolean value specifying whether to collect authentication metrics", defaultValue = "true")
+    private Boolean authenticationMetricsEnabled = true;
+    
+    @DocProperty(description = "Boolean value specifying whether to collect device information", defaultValue = "true")
+    private Boolean deviceInfoCollection = true;
+    
+    @DocProperty(description = "Boolean value specifying whether to categorize errors", defaultValue = "true")
+    private Boolean errorCategorization = true;
+
     private Fido2Configuration fido2Configuration;
 
 	public String getIssuer() {
@@ -209,4 +235,78 @@ public class AppConfiguration implements Configuration, Serializable {
 	public void setErrorReasonEnabled(Boolean errorReasonEnabled) {
 		this.errorReasonEnabled = errorReasonEnabled;
 	}
+
+    // ========== PASSKEY METRICS GETTERS AND SETTERS ==========
+    
+    public Boolean getPasskeyMetricsEnabled() {
+        if (passkeyMetricsEnabled == null) passkeyMetricsEnabled = true;
+        return passkeyMetricsEnabled;
+    }
+    
+    public void setPasskeyMetricsEnabled(Boolean passkeyMetricsEnabled) {
+        this.passkeyMetricsEnabled = passkeyMetricsEnabled;
+    }
+    
+    public Integer getPasskeyMetricsRetentionDays() {
+        if (passkeyMetricsRetentionDays == null) passkeyMetricsRetentionDays = 90;
+        return passkeyMetricsRetentionDays;
+    }
+    
+    public void setPasskeyMetricsRetentionDays(Integer passkeyMetricsRetentionDays) {
+        this.passkeyMetricsRetentionDays = passkeyMetricsRetentionDays;
+    }
+    
+    public Boolean getPasskeyMetricsAsyncStorage() {
+        if (passkeyMetricsAsyncStorage == null) passkeyMetricsAsyncStorage = true;
+        return passkeyMetricsAsyncStorage;
+    }
+    
+    public void setPasskeyMetricsAsyncStorage(Boolean passkeyMetricsAsyncStorage) {
+        this.passkeyMetricsAsyncStorage = passkeyMetricsAsyncStorage;
+    }
+    
+    public Integer getPasskeyMetricsBatchSize() {
+        if (passkeyMetricsBatchSize == null) passkeyMetricsBatchSize = 100;
+        return passkeyMetricsBatchSize;
+    }
+    
+    public void setPasskeyMetricsBatchSize(Integer passkeyMetricsBatchSize) {
+        this.passkeyMetricsBatchSize = passkeyMetricsBatchSize;
+    }
+    
+    public Boolean getRegistrationMetricsEnabled() {
+        if (registrationMetricsEnabled == null) registrationMetricsEnabled = true;
+        return registrationMetricsEnabled;
+    }
+    
+    public void setRegistrationMetricsEnabled(Boolean registrationMetricsEnabled) {
+        this.registrationMetricsEnabled = registrationMetricsEnabled;
+    }
+    
+    public Boolean getAuthenticationMetricsEnabled() {
+        if (authenticationMetricsEnabled == null) authenticationMetricsEnabled = true;
+        return authenticationMetricsEnabled;
+    }
+    
+    public void setAuthenticationMetricsEnabled(Boolean authenticationMetricsEnabled) {
+        this.authenticationMetricsEnabled = authenticationMetricsEnabled;
+    }
+    
+    public Boolean getDeviceInfoCollection() {
+        if (deviceInfoCollection == null) deviceInfoCollection = true;
+        return deviceInfoCollection;
+    }
+    
+    public void setDeviceInfoCollection(Boolean deviceInfoCollection) {
+        this.deviceInfoCollection = deviceInfoCollection;
+    }
+    
+    public Boolean getErrorCategorization() {
+        if (errorCategorization == null) errorCategorization = true;
+        return errorCategorization;
+    }
+    
+    public void setErrorCategorization(Boolean errorCategorization) {
+        this.errorCategorization = errorCategorization;
+    }
 }

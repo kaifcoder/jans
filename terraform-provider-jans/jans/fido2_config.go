@@ -39,6 +39,16 @@ type JansFido2DynConfiguration struct {
 	MetricReporterKeepDataDays  int                `schema:"metric_reporter_keep_data_days" json:"metricReporterKeepDataDays,omitempty"`
 	PersonCustomObjectClassList []string           `schema:"person_custom_object_class_list" json:"personCustomObjectClassList,omitempty"`
 	Fido2Configuration          Fido2Configuration `schema:"fido2_configuration" json:"fido2Configuration,omitempty"`
+	
+	// Passkey Metrics Configuration
+	PasskeyMetricsEnabled       bool `schema:"passkey_metrics_enabled" json:"passkeyMetricsEnabled,omitempty"`
+	PasskeyMetricsRetentionDays int  `schema:"passkey_metrics_retention_days" json:"passkeyMetricsRetentionDays,omitempty"`
+	PasskeyMetricsAsyncStorage  bool `schema:"passkey_metrics_async_storage" json:"passkeyMetricsAsyncStorage,omitempty"`
+	PasskeyMetricsBatchSize     int  `schema:"passkey_metrics_batch_size" json:"passkeyMetricsBatchSize,omitempty"`
+	RegistrationMetricsEnabled  bool `schema:"registration_metrics_enabled" json:"registrationMetricsEnabled,omitempty"`
+	AuthenticationMetricsEnabled bool `schema:"authentication_metrics_enabled" json:"authenticationMetricsEnabled,omitempty"`
+	DeviceInfoCollection        bool `schema:"device_info_collection" json:"deviceInfoCollection,omitempty"`
+	ErrorCategorization         bool `schema:"error_categorization" json:"errorCategorization,omitempty"`
 }
 
 // GetFido2Configuration returns the current Fido2 configuration.
