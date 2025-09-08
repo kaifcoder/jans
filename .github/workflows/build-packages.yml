@@ -316,12 +316,12 @@ jobs:
         cd ../..
         npm run pack
         mv ./release/janssen-tarp-chrome-*.zip ../demo-janssen-tarp-chrome-$VER.zip
-        mv ./dist/firefox/web-ext-artifacts/*.xpi ../demo-janssen-tarp-firefox-$VER.xpi || touch ../demo-janssen-tarp-firefox-$VER.xpi
+        mv ./dist/firefox/web-ext-artifacts/*.zip ../demo-janssen-tarp-firefox-$VER.zip || touch ../demo-janssen-tarp-firefox-$VER.zip
         cd ..
 
         echo "${{ secrets.MOAUTO_WORKFLOW_TOKEN }}" | gh auth login --with-token
         gh release upload $VER *.zip --clobber
-        gh release upload $VER *.xpi  --clobber || echo "Sign your extension for self-distribution to mozilla failed"
+        gh release upload $VER *.zip  --clobber || echo "Sign your extension for self-distribution to mozilla failed"
   build_cedarling_python:
     if: github.repository == 'JanssenProject/jans'
     runs-on: ubuntu-22.04
